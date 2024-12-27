@@ -10,7 +10,7 @@ router.post('/',
     AirplaneController.createairplane
 );
 
-router.get('/', AirplaneController.getAirplanes);
+router.get('/', AirplaneController.getairplanes);
 
 router.get('/:id', AirplaneController.getAirplane);
 

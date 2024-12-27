@@ -1,11 +1,11 @@
-const { AirplaneRepo } = require('../repositories');
-const AppError = require('../utils/error/app-error');
+const { AirplaneRepository } = require('../repositories');
+const  AppError  = require('../utils/error/app-error');
 const { StatusCodes } = require('http-status-codes');
 
 
-const airplanerepo = new AirplaneRepo();
+const airplanerepo = new AirplaneRepository();
 
-async function createairplane(data){
+async function createAirplane(data){
     try {
         const response = await airplanerepo.create(data);
         return response;
@@ -19,7 +19,7 @@ async function getAirplanes(){
         const response = await airplanerepo.getall();
         return response;
     } catch (error) {
-        // throw new AppError('Cannot fetch data of all the airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError('Cannot fetch service data of all the airplanes', StatusCodes.INTERNAL_SERVER_ERROR);
         throw error;
     }
 }
@@ -32,7 +32,7 @@ async function getAirplane(id){
         if(error.statusCode == StatusCodes.NOT_FOUND) {
             throw new AppError('The airplane you requested is not present', error.statusCode);
         }
-        throw new AppError('Cannot fetch data of all the airplanes', StatusCodes.INTERNAL_SERVER_ERROR);    
+        throw new AppError('Cannot fetch service data of all the airplanes', StatusCodes.INTERNAL_SERVER_ERROR);    
     }
 }
 
@@ -49,7 +49,7 @@ async function destroyAirplane(id) {
 }
 
 module.exports = {
-    createairplane,
+    createAirplane,
     getAirplanes,
     getAirplane,
     destroyAirplane
